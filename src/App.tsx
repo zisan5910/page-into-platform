@@ -18,6 +18,20 @@ import Hotel from "./pages/categories/Hotel";
 import Student from "./pages/categories/Student";
 import TouristSpots from "./pages/categories/TouristSpots";
 import ReligiousPlaces from "./pages/categories/ReligiousPlaces";
+import Doctor from "./pages/categories/Doctor";
+import Hospital from "./pages/categories/Hospital";
+import Diagnostic from "./pages/categories/Diagnostic";
+import BloodDonation from "./pages/categories/BloodDonation";
+import CarRent from "./pages/categories/CarRent";
+import Police from "./pages/categories/Police";
+import Lawyer from "./pages/categories/Lawyer";
+import Jobs from "./pages/categories/Jobs";
+import Teacher from "./pages/categories/Teacher";
+import Entrepreneur from "./pages/categories/Entrepreneur";
+import TrainingCenter from "./pages/categories/TrainingCenter";
+import PlotLand from "./pages/categories/PlotLand";
+import Mechanic from "./pages/categories/Mechanic";
+import Nursery from "./pages/categories/Nursery";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +55,20 @@ const App = () => (
           <Route path="/category/student" element={<Student />} />
           <Route path="/category/tourist-spot" element={<TouristSpots />} />
           <Route path="/category/religious" element={<ReligiousPlaces />} />
+          <Route path="/category/doctor" element={<Doctor />} />
+          <Route path="/category/hospital" element={<Hospital />} />
+          <Route path="/category/diagnostic" element={<Diagnostic />} />
+          <Route path="/category/blood-donation" element={<BloodDonation />} />
+          <Route path="/category/car-rent" element={<CarRent />} />
+          <Route path="/category/police" element={<Police />} />
+          <Route path="/category/lawyer" element={<Lawyer />} />
+          <Route path="/category/job" element={<Jobs />} />
+          <Route path="/category/teacher" element={<Teacher />} />
+          <Route path="/category/entrepreneur" element={<Entrepreneur />} />
+          <Route path="/category/training" element={<TrainingCenter />} />
+          <Route path="/category/land" element={<PlotLand />} />
+          <Route path="/category/mechanic" element={<Mechanic />} />
+          <Route path="/category/nursery" element={<Nursery />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

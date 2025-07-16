@@ -1,7 +1,7 @@
 
 import TopNavigation from '../components/TopNavigation';
 import BottomNavigation from '../components/BottomNavigation';
-import { Phone, Mail, MapPin, Globe, Users, Target, Heart } from 'lucide-react';
+import { Globe, Users, Target, Heart } from 'lucide-react';
 
 const AboutUs = () => {
   const features = [
@@ -51,27 +51,6 @@ const AboutUs = () => {
       title: 'উপজেলা সদর',
       value: 'ধুনট',
       icon: '🏛️'
-    }
-  ];
-
-  const contacts = [
-    {
-      icon: <Phone className="h-4 w-4" />,
-      label: 'ফোন',
-      value: '+৮৮০১৭১১-১২৩৪৫৬',
-      action: () => window.location.href = 'tel:+8801711123456'
-    },
-    {
-      icon: <Mail className="h-4 w-4" />,
-      label: 'ইমেইল',
-      value: 'ridoan.zisan@gmail.com',
-      action: () => window.location.href = 'mailto:ridoan.zisan@gmail.com'
-    },
-    {
-      icon: <MapPin className="h-4 w-4" />,
-      label: 'ঠিকানা',
-      value: 'ধুনট সদর, বগুড়া',
-      action: () => window.open('https://maps.google.com?q=Dhunat+Bogura', '_blank')
     }
   ];
 
@@ -170,30 +149,6 @@ const AboutUs = () => {
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact Information */}
-          <div className="mb-4">
-            <h3 className="text-base font-bold text-gray-800 font-bengali mb-3">
-              যোগাযোগ
-            </h3>
-            <div className="space-y-2">
-              {contacts.map((contact, index) => (
-                <button
-                  key={index}
-                  onClick={contact.action}
-                  className="w-full flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-left"
-                >
-                  <div className="text-blue-600 flex-shrink-0">
-                    {contact.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-xs text-gray-500 font-bengali">{contact.label}</div>
-                    <div className="font-medium text-gray-800 text-sm">{contact.value}</div>
-                  </div>
-                </button>
               ))}
             </div>
           </div>
