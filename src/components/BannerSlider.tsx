@@ -1,0 +1,93 @@
+
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+const BannerSlider = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const banners = [
+    {
+      id: 1,
+      title: 'ধুনট উপজেলার সেবা',
+      subtitle: 'সকল তথ্য এক জায়গায়',
+      color: 'from-blue-500 to-blue-600',
+    },
+    {
+      id: 2,
+      title: 'স্থানীয় ব্যবসা',
+      subtitle: 'প্রয়োজনীয় সেবা',
+      color: 'from-green-500 to-green-600',
+    },
+    {
+      id: 3,
+      title: 'জরুরি সেবা',
+      subtitle: 'হাসপাতাল, থানা',
+      color: 'from-red-500 to-red-600',
+    },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % banners.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [banners.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % banners.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + banners.length) % banners.length);
+  };
+
+  return (
+    <div className="relative h-24 mx-4 mt-2 mb-2 overflow-hidden rounded-lg shadow-sm">
+      <div
+        className="flex transition-transform duration-500 ease-in-out h-full"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
+        {banners.map((banner) => (
+          <div
+            key={banner.id}
+            className={`w-full h-full flex-shrink-0 bg-gradient-to-r ${banner.color} flex items-center justify-center relative`}
+          >
+            <div className="text-center text-white p-3">
+              <h3 className="text-base font-bold font-bengali mb-0.5">{banner.title}</h3>
+              <p className="text-xs font-bengali opacity-90">{banner.subtitle}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button
+        onClick={prevSlide}
+        className="absolute left-1 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 rounded-full p-1 transition-colors"
+      >
+        <ChevronLeft className="h-3 w-3 text-white" />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        className="absolute right-1 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 rounded-full p-1 transition-colors"
+      >
+        <ChevronRight className="h-3 w-3 text-white" />
+      </button>
+
+      <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex space-x-1">
+        {banners.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-1.5 h-1.5 rounded-full transition-colors ${
+              index === currentSlide ? 'bg-white' : 'bg-white/50'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default BannerSlider;
