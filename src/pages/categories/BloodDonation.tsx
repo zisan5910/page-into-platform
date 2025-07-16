@@ -22,11 +22,22 @@ const BloodDonation = () => {
     { id: 10, name: 'তানভীর আহমেদ', bloodGroup: 'O+', location: 'ধুনট বাজার', phone: '01711000040', lastDonation: '৫ মাস আগে', availability: 'সহজলভ্য' }
   ];
 
+  const bloodGroupOptions = [
+    { value: 'A+', label: 'A+' },
+    { value: 'A-', label: 'A-' },
+    { value: 'B+', label: 'B+' },
+    { value: 'B-', label: 'B-' },
+    { value: 'AB+', label: 'AB+' },
+    { value: 'AB-', label: 'AB-' },
+    { value: 'O+', label: 'O+' },
+    { value: 'O-', label: 'O-' }
+  ];
+
   const filteredDonors = donors.filter(donor => {
     const matchesSearch = donor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         donor.bloodGroup.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          donor.location.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesSearch;
+    const matchesFilter = filterType === 'all' || donor.bloodGroup === filterType;
+    return matchesSearch && matchesFilter;
   });
 
   return (
@@ -44,7 +55,8 @@ const BloodDonation = () => {
         <SearchAndFilter
           onSearch={setSearchQuery}
           onFilter={setFilterType}
-          placeholder="রক্তদাতা বা রক্তের গ্রুপ খুঁজুন..."
+          placeholder="রক্তদাতা বা এলাকা খুঁজুন..."
+          filterOptions={bloodGroupOptions}
         />
 
         <div className="px-4 py-2">

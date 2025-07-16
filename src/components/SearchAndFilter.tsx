@@ -1,57 +1,78 @@
 
-import { useState } from 'react';
-import { Search } from 'lucide-react';
+import React from 'react';
+import { Search, Filter } from 'lucide-react';
+
+interface FilterOption {
+  value: string;
+  label: string;
+}
 
 interface SearchAndFilterProps {
   onSearch: (query: string) => void;
-  onFilter: (type: string) => void;
+  onFilter: (filter: string) => void;
   placeholder?: string;
-  filterOptions?: { value: string; label: string }[];
+  filterOptions?: FilterOption[];
 }
 
-const SearchAndFilter = ({ 
-  onSearch, 
-  onFilter, 
+const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
+  onSearch,
+  onFilter,
   placeholder = "খুঁজুন...",
-  filterOptions = [
-    { value: 'all', label: 'সব' },
-    { value: 'name', label: 'নাম অনুযায়ী' },
-    { value: 'location', label: 'এলাকা অনুযায়ী' },
-  ]
-}: SearchAndFilterProps) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearch = (value: string) => {
-    setSearchQuery(value);
-    onSearch(value);
-  };
-
+  filterOptions = []
+}) => {
   return (
-    <div className="px-4 py-2 bg-white">
-      {/* Search Bar */}
-      <div className="relative mb-2">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => handleSearch(e.target.value)}
-          placeholder={placeholder}
-          className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent font-bengali text-sm"
-        />
+    <div className="px-4 py-3 bg-white border-b border-gray-100">
+      <div className="flex gap-2">
+        {/* Search Input */}
+        <div className="flex-1 relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+          <input
+            type="text"
+            placeholder={placeholder}
+            onChange={(e) => onSearch(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-bengali"
+          />
+        </div>
+
+        {/* Filter Dropdown */}
+        {filterOptions.length > 0 && (
+          <div className="relative">
+            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 z-10" size={16} />
+            <select
+              onChange={(e) => onFilter(e.target.value)}
+              className="pl-10 pr-8 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-bengali bg-white appearance-none min-w-[120px]"
+            >
+              <option value="all">সকল</option>
+              {filterOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
       </div>
 
-      {/* Filter Options - Always Visible */}
-      <div className="flex flex-wrap gap-2">
-        {filterOptions.map((option) => (
+      {/* Quick Filter Buttons for specific categories */}
+      {filterOptions.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-3">
           <button
-            key={option.value}
-            onClick={() => onFilter(option.value)}
-            className="px-3 py-1 text-xs bg-gray-50 border border-gray-200 rounded-full hover:bg-orange-50 hover:border-orange-300 transition-colors font-bengali"
+            onClick={() => onFilter('all')}
+            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bengali hover:bg-gray-200 transition-colors"
           >
-            {option.label}
+            সকল
           </button>
-        ))}
-      </div>
+          {filterOptions.slice(0, 6).map((option) => (
+            <button
+              key={option.value}
+              onClick={() => onFilter(option.value)}
+              className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-bengali hover:bg-blue-100 transition-colors"
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

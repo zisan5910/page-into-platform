@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import TopNavigation from '../../components/TopNavigation';
 import BottomNavigation from '../../components/BottomNavigation';
@@ -22,10 +21,22 @@ const Doctor = () => {
     { id: 10, name: 'ডাঃ শামসুন নাহার', specialization: 'হৃদরোগ বিশেষজ্ঞ', hospital: 'হার্ট কেয়ার', phone: '01711000010', chamber: 'বিকাল ৪টা - সন্ধ্যা ৮টা', location: 'ধুনট বাজার' }
   ];
 
+  const specializationOptions = [
+    { value: 'কার্ডিওলজিস্ট', label: 'কার্ডিওলজিস্ট' },
+    { value: 'গাইনোকোলজিস্ট', label: 'গাইনোকোলজিস্ট' },
+    { value: 'শিশু বিশেষজ্ঞ', label: 'শিশু বিশেষজ্ঞ' },
+    { value: 'চর্ম রোগ বিশেষজ্ঞ', label: 'চর্ম রোগ বিশেষজ্ঞ' },
+    { value: 'অর্থোপেডিক', label: 'অর্থোপেডিক' },
+    { value: 'চোখের ডাক্তার', label: 'চোখের ডাক্তার' },
+    { value: 'মেডিসিন বিশেষজ্ঞ', label: 'মেডিসিন বিশেষজ্ঞ' },
+    { value: 'দাঁতের ডাক্তার', label: 'দাঁতের ডাক্তার' }
+  ];
+
   const filteredDoctors = doctors.filter(doctor => {
     const matchesSearch = doctor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         doctor.specialization.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesSearch;
+                         doctor.hospital.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = filterType === 'all' || doctor.specialization === filterType;
+    return matchesSearch && matchesFilter;
   });
 
   return (
@@ -43,7 +54,8 @@ const Doctor = () => {
         <SearchAndFilter
           onSearch={setSearchQuery}
           onFilter={setFilterType}
-          placeholder="ডাক্তার বা বিশেষত্ব খুঁজুন..."
+          placeholder="ডাক্তার বা হাসপাতাল খুঁজুন..."
+          filterOptions={specializationOptions}
         />
 
         <div className="px-4 py-2">

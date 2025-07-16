@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import TopNavigation from '../../components/TopNavigation';
 import BottomNavigation from '../../components/BottomNavigation';
@@ -10,22 +9,32 @@ const BusSchedule = () => {
   const [filterType, setFilterType] = useState('all');
 
   const busSchedules = [
-    { id: 1, route: 'ধুনট - ঢাকা', company: 'শ্যামলী পরিবহন', departure: 'সকাল ৭:০০', fare: '৩৫০ টাকা', phone: '01711000001' },
-    { id: 2, route: 'ধুনট - রংপুর', company: 'এস আর ট্রাভেলস', departure: 'সকাল ৮:৩০', fare: '১৫০ টাকা', phone: '01711000002' },
-    { id: 3, route: 'ধুনট - বগুড়া', company: 'হানিফ এন্টারপ্রাইজ', departure: 'সকাল ৬:৪৫', fare: '৮০ টাকা', phone: '01711000003' },
-    { id: 4, route: 'ধুনট - সিরাজগঞ্জ', company: 'নাবিল পরিবহন', departure: 'সন্ধ্যা ৬:১৫', fare: '১২০ টাকা', phone: '01711000004' },
-    { id: 5, route: 'ধুনট - পাবনা', company: 'রয়েল কোচ', departure: 'দুপুর ১২:৩০', fare: '১০০ টাকা', phone: '01711000005' },
-    { id: 6, route: 'ধুনট - চট্টগ্রাম', company: 'গ্রিন লাইন', departure: 'রাত ৯:০০', fare: '৫৫০ টাকা', phone: '01711000006' },
-    { id: 7, route: 'ধুনট - সিলেট', company: 'শান্তি পরিবহন', departure: 'সন্ধ্যা ৭:৩০', fare: '৪৫০ টাকা', phone: '01711000007' },
-    { id: 8, route: 'ধুনট - রাজশাহী', company: 'দেশ ট্রাভেলস', departure: 'সকাল ৯:১৫', fare: '২০০ টাকা', phone: '01711000008' },
-    { id: 9, route: 'ধুনট - যশোর', company: 'সোহাগ পরিবহন', departure: 'বিকাল ৩:৪৫', fare: '৩০০ টাকা', phone: '01711000009' },
-    { id: 10, route: 'ধুনট - কুমিল্লা', company: 'তৃষা পরিবহন', departure: 'সকাল ১০:০০', fare: '৩৮০ টাকা', phone: '01711000010' }
+    { id: 1, route: 'ধুনট - ঢাকা', company: 'শ্যামলী পরিবহন', departure: 'সকাল ৭:০০', fare: '৩৫০ টাকা', phone: '01711000001', destination: 'ঢাকা' },
+    { id: 2, route: 'ধুনট - রংপুর', company: 'এস আর ট্রাভেলস', departure: 'সকাল ৮:৩০', fare: '১৫০ টাকা', phone: '01711000002', destination: 'রংপুর' },
+    { id: 3, route: 'ধুনট - বগুড়া', company: 'হানিফ এন্টারপ্রাইজ', departure: 'সকাল ৬:৪৫', fare: '৮০ টাকা', phone: '01711000003', destination: 'বগুড়া' },
+    { id: 4, route: 'ধুনট - সিরাজগঞ্জ', company: 'নাবিল পরিবহন', departure: 'সন্ধ্যা ৬:১৫', fare: '১২০ টাকা', phone: '01711000004', destination: 'সিরাজগঞ্জ' },
+    { id: 5, route: 'ধুনট - পাবনা', company: 'রয়েল কোচ', departure: 'দুপুর ১২:৩০', fare: '১০০ টাকা', phone: '01711000005', destination: 'পাবনা' },
+    { id: 6, route: 'ধুনট - চট্টগ্রাম', company: 'গ্রিন লাইন', departure: 'রাত ৯:০০', fare: '৫৫০ টাকা', phone: '01711000006', destination: 'চট্টগ্রাম' },
+    { id: 7, route: 'ধুনট - সিলেট', company: 'শান্তি পরিবহন', departure: 'সন্ধ্যা ৭:৩০', fare: '৪৫০ টাকা', phone: '01711000007', destination: 'সিলেট' },
+    { id: 8, route: 'ধুনট - রাজশাহী', company: 'দেশ ট্রাভেলস', departure: 'সকাল ৯:১৫', fare: '২০০ টাকা', phone: '01711000008', destination: 'রাজশাহী' },
+    { id: 9, route: 'ধুনট - যশোর', company: 'সোহাগ পরিবহন', departure: 'বিকাল ৩:৪৫', fare: '৩০০ টাকা', phone: '01711000009', destination: 'যশোর' },
+    { id: 10, route: 'ধুনট - কুমিল্লা', company: 'তৃষা পরিবহন', departure: 'সকাল ১০:০০', fare: '৩৮০ টাকা', phone: '01711000010', destination: 'কুমিল্লা' }
+  ];
+
+  const destinationOptions = [
+    { value: 'ঢাকা', label: 'ঢাকা' },
+    { value: 'চট্টগ্রাম', label: 'চট্টগ্রাম' },
+    { value: 'রংপুর', label: 'রংপুর' },
+    { value: 'বগুড়া', label: 'বগুড়া' },
+    { value: 'রাজশাহী', label: 'রাজশাহী' },
+    { value: 'সিলেট', label: 'সিলেট' }
   ];
 
   const filteredSchedules = busSchedules.filter(schedule => {
     const matchesSearch = schedule.route.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          schedule.company.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesSearch;
+    const matchesFilter = filterType === 'all' || schedule.destination === filterType;
+    return matchesSearch && matchesFilter;
   });
 
   return (
@@ -43,7 +52,8 @@ const BusSchedule = () => {
         <SearchAndFilter
           onSearch={setSearchQuery}
           onFilter={setFilterType}
-          placeholder="রুট বা কোম্পানি খুঁজুন..."
+          placeholder="গন্তব্য বা কোম্পানি খুঁজুন..."
+          filterOptions={destinationOptions}
         />
 
         <div className="px-4 py-2">

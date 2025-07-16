@@ -8,26 +8,14 @@ const BannerSlider = () => {
   const banners = [
     {
       id: 1,
-      title: 'ধুনট উপজেলার সেবা',
-      subtitle: 'সকল তথ্য এক জায়গায়',
-      color: 'from-blue-500 to-blue-600',
       image: 'https://i.postimg.cc/kg9gS2c2/20250615-165732-0000.png',
       duration: 5000 // ৫ সেকেন্ড
     },
     {
       id: 2,
-      title: 'স্থানীয় ব্যবসা',
-      subtitle: 'প্রয়োজনীয় সেবা',
-      color: 'from-green-500 to-green-600',
-      duration: 2000 // ২ সেকেন্ড
-    },
-    {
-      id: 3,
-      title: 'জরুরি সেবা',
-      subtitle: 'হাসপাতাল, থানা',
-      color: 'from-red-500 to-red-600',
-      duration: 2000 // ২ সেকেন্ড
-    },
+      image: 'https://i.postimg.cc/KvfG1ty3/Netlistore-20250705-024940-0000.png',
+      duration: 5000 // ৫ সেকেন্ড
+    }
   ];
 
   useEffect(() => {
@@ -49,6 +37,10 @@ const BannerSlider = () => {
     setCurrentSlide((prev) => (prev - 1 + banners.length) % banners.length);
   };
 
+  const handleBannerClick = () => {
+    window.location.href = 'tel:01712525910';
+  };
+
   return (
     <div className="relative h-24 mx-4 mt-2 mb-2 overflow-hidden rounded-lg shadow-sm">
       <div
@@ -58,17 +50,10 @@ const BannerSlider = () => {
         {banners.map((banner) => (
           <div
             key={banner.id}
-            className={`w-full h-full flex-shrink-0 ${banner.image ? 'bg-cover bg-center' : `bg-gradient-to-r ${banner.color}`} flex items-center justify-center relative`}
-            style={banner.image ? { backgroundImage: `url(${banner.image})` } : {}}
-          >
-            {banner.image && (
-              <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-            )}
-            <div className="text-center text-white p-3 relative z-10">
-              <h3 className="text-base font-bold font-bengali mb-0.5">{banner.title}</h3>
-              <p className="text-xs font-bengali opacity-90">{banner.subtitle}</p>
-            </div>
-          </div>
+            className="w-full h-full flex-shrink-0 bg-cover bg-center cursor-pointer"
+            style={{ backgroundImage: `url(${banner.image})` }}
+            onClick={handleBannerClick}
+          />
         ))}
       </div>
 

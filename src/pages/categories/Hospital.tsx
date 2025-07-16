@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import TopNavigation from '../../components/TopNavigation';
 import BottomNavigation from '../../components/BottomNavigation';
@@ -22,10 +21,17 @@ const Hospital = () => {
     { id: 10, name: 'স্বাস্থ্য কেন্দ্র', type: 'সরকারি', address: 'ধুনট বাজার, বগুড়া', phone: '01711000020', services: 'প্রাথমিক চিকিৎসা, টিকাদান', hours: 'সকাল ৮টা - বিকাল ৪টা' }
   ];
 
+  const hospitalTypeOptions = [
+    { value: 'সরকারি', label: 'সরকারি' },
+    { value: 'বেসরকারি', label: 'বেসরকারি' },
+    { value: 'বিশেষায়িত', label: 'বিশেষায়িত' }
+  ];
+
   const filteredHospitals = hospitals.filter(hospital => {
     const matchesSearch = hospital.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         hospital.type.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesSearch;
+                         hospital.services.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = filterType === 'all' || hospital.type === filterType;
+    return matchesSearch && matchesFilter;
   });
 
   return (
@@ -43,7 +49,8 @@ const Hospital = () => {
         <SearchAndFilter
           onSearch={setSearchQuery}
           onFilter={setFilterType}
-          placeholder="হাসপাতাল খুঁজুন..."
+          placeholder="হাসপাতাল বা সেবা খুঁজুন..."
+          filterOptions={hospitalTypeOptions}
         />
 
         <div className="px-4 py-2">
