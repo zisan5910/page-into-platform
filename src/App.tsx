@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -32,6 +31,20 @@ import TrainingCenter from "./pages/categories/TrainingCenter";
 import PlotLand from "./pages/categories/PlotLand";
 import Mechanic from "./pages/categories/Mechanic";
 import Nursery from "./pages/categories/Nursery";
+import BuySell from "./pages/categories/BuySell";
+import ElectricityOffice from "./pages/categories/ElectricityOffice";
+import EducationalInstitution from "./pages/categories/EducationalInstitution";
+import CourierService from "./pages/categories/CourierService";
+import Video from "./pages/categories/Video";
+import BeautyParlor from "./pages/categories/BeautyParlor";
+import Website from "./pages/categories/Website";
+import Municipality from "./pages/categories/Municipality";
+import BankInsurance from "./pages/categories/BankInsurance";
+import GasStation from "./pages/categories/GasStation";
+import Newspaper from "./pages/categories/Newspaper";
+import GeneralHelp from "./pages/categories/GeneralHelp";
+import DayLaborer from "./pages/categories/DayLaborer";
+import DuaZikir from "./pages/categories/DuaZikir";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +82,20 @@ const App = () => (
           <Route path="/category/land" element={<PlotLand />} />
           <Route path="/category/mechanic" element={<Mechanic />} />
           <Route path="/category/nursery" element={<Nursery />} />
+          <Route path="/category/buy-sell" element={<BuySell />} />
+          <Route path="/category/electricity" element={<ElectricityOffice />} />
+          <Route path="/category/education" element={<EducationalInstitution />} />
+          <Route path="/category/courier" element={<CourierService />} />
+          <Route path="/category/video" element={<Video />} />
+          <Route path="/category/beauty-parlor" element={<BeautyParlor />} />
+          <Route path="/category/website" element={<Website />} />
+          <Route path="/category/municipality" element={<Municipality />} />
+          <Route path="/category/bank-insurance" element={<BankInsurance />} />
+          <Route path="/category/gas-station" element={<GasStation />} />
+          <Route path="/category/newspaper" element={<Newspaper />} />
+          <Route path="/category/general-help" element={<GeneralHelp />} />
+          <Route path="/category/daily-worker" element={<DayLaborer />} />
+          <Route path="/category/dua-zikir" element={<DuaZikir />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
